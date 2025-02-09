@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        @font-face {
+            font-family: 'PixelFont';
+            src: url('https://fonts.cdnfonts.com/s/93078/Pixeled.woff') format('woff');
+        }
+
+        body {
+            font-family: 'PixelFont', sans-serif;
+            text-align: center;
+            background-color: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #asciiArt {
+            font-size: 12px;
+            white-space: pre;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        #message {
+            font-size: 24px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 10px;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            font-family: 'PixelFont', sans-serif;
+            font-size: 20px;
+            padding: 20px;
+            cursor: pointer;
+            border: 3px solid white;
+            background-color: rgb(255, 105, 180);
+            color: white;
+            text-shadow: 2px 2px 0px black;
+            transition: all 0.3s ease-in-out;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: rgb(255, 50, 150);
+        }
+
+        #buttonContainer {
+            display: flex;
+            gap: 30px; /* Keeps space between the buttons */
+            justify-content: center;
+        }
+
+        #noBtn {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <pre id="asciiArt">
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⢴⣄⠐⢿⠀⠙⠃⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⢀⡦⢀⣄⠀⠘⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣀⣤⣤⣀⢀⣀⠘⠇⠘⠁⠙⠠⣤⣤⣴⣶⣶⣿⣶⣦⣄⡀⠀⠀
+⠀⠀⣀⣴⣾⣿⣿⣿⡿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠈⠙⢿⣿⣿⣿⣿⣿⣿⣶⡀
+⠀⣰⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⣿⣿⣿⣿⣷
+⢠⣿⣿⣿⣿⠏⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣷⠙⠻⢿⣿⣿⠟
+⠈⠛⠛⠋⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠸⠇⠀⠀⠠⢀⣀⠀⠀⠀⠀⢀⣀⣀⠀⠠⠀⠹⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⢠⡾⠃⠀⠀⠀⠉⠉⠀⠀⠉⠀⠀⠈⠁⠀⠀⠀⠐⢷⡄⠀⠀⠀⠀
+⠀⠀⠀⠀⠸⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣤⠞⠁⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠈⠙⠓⠶⠶⠶⠶⠶⠶⠶⠛⠛⠛⠋⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀
+    </pre>
+
+    <h1 id="message">Will you be my valentine? 🥺</h1>
+
+    <div id="buttonContainer">
+        <button class="btn" onclick="answer('yes')" id="yesBtn">Yes</button>
+        <button class="btn" id="noBtn" onclick="answer('no')">No</button>
+    </div>
+
+    <script>
+        let questions = [
+            "Are you sure?",
+            "Are you super sure?",
+            "Are you super DUPER sure?",
+            "Positive?",
+            "What if I gave you a hug?",
+            "Two hugs?",
+            "Three hugs?",
+            "Four hugs and a kiss? 😘",
+            "Five hugs and two kisses? 😘😘",
+            "Kinder Joy?",
+            "I'LL GIVE YOU ANYTHING YOU WANT",
+            "U BEACH",
+            "SAY YES"
+        ];
+        
+        let index = 0;
+        let yesSize = 20;
+        let noSize = 100;
+
+        function answer(response) {
+            if (response === 'yes') {
+                document.getElementById("message").innerHTML = 
+                    "I LOVE YOU SO MUCH POOKIE 😘🎅🏻🥰🎅🏻🤩😘🩷❤️💛🩵🩵❤️💙🩵💙❤️🩵🩵💛💚💚💚💛🩷💙 THANKS FOR SAYING YES";
+                document.getElementById("noBtn").style.display = "none";
+            } else {
+                if (index < 4) {
+                    document.getElementById("message").innerHTML = questions[index];
+                } else {
+                    document.getElementById("message").innerHTML = "";
+                    document.getElementById("noBtn").innerHTML = questions[index];
+                }
+
+                index++;
+                yesSize += 10;
+                noSize += 30; 
+
+                document.getElementById("yesBtn").style.fontSize = yesSize + "px";
+                document.getElementById("noBtn").style.width = noSize + "px";
+                document.getElementById("noBtn").style.height = noSize + "px";
+
+                if (index >= questions.length) {
+                    document.getElementById("message").innerHTML = "Will you be my valentine? 🥺";
+                    document.getElementById("noBtn").innerHTML = "Yes 😈";
+                    document.getElementById("noBtn").onclick = function() { answer('yes'); };
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
